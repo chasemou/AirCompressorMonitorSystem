@@ -1,0 +1,10 @@
+﻿<Application x:Class="WpfTest.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WpfTest"
+             StartupUri="Views/MainWindow.xaml">
+    <Application.Resources>
+        <FontFamily x:Key="Jinbuti">pack://application:,,,/WpfTest;component/Assets/Fonts/#钉钉进步体</FontFamily>
+        <FontFamily x:Key="Iconfont">pack://application:,,,/WpfTest;component/Assets/Fonts/#iconfont</FontFamily>
+    </Application.Resources>
+</Application>

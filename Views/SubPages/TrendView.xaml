@@ -1,0 +1,73 @@
+<UserControl x:Class="WpfTest.Views.SubPages.TrendView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:WpfTest.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--顶部工具栏：历史趋势查询 + 报警声音开关-->
+        <Border Grid.Row="0" Background="#1E2A3A" Padding="12,8" CornerRadius="4">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="历史查询：" Foreground="#B0BEC5" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                <DatePicker SelectedDate="{Binding TrendVM.StartDate}" Width="130" VerticalAlignment="Center"
+                            Foreground="#ECEFF1"/>
+                <TextBlock Text="至" Foreground="#B0BEC5" VerticalAlignment="Center" Margin="8,0"/>
+                <DatePicker SelectedDate="{Binding TrendVM.EndDate}" Width="130" VerticalAlignment="Center"
+                            Foreground="#ECEFF1"/>
+                <Button Content="查询历史" Command="{Binding TrendVM.QueryHistoricalTrendCommand}"
+                        Margin="12,0,6,0" Padding="14,4" Background="#1565C0" Foreground="White"
+                        BorderThickness="0" Cursor="Hand"/>
+                <Button Content="返回实时" Command="{Binding TrendVM.BackToRealtimeCommand}"
+                        Margin="0,0,12,0" Padding="14,4" Background="#37474F" Foreground="White"
+                        BorderThickness="0" Cursor="Hand" IsEnabled="{Binding TrendVM.IsHistoricalMode}"/>
+                <CheckBox Content="报警声音" IsChecked="{Binding TrendVM.AlarmSoundEnabled}"
+                          Foreground="#B0BEC5" VerticalAlignment="Center" Margin="0,0,12,0"/>
+                <TextBlock Text="{Binding TrendVM.HistoricalStatus}" Foreground="#80CBC4" VerticalAlignment="Center"
+                           FontSize="12"/>
+            </StackPanel>
+        </Border>
+
+        <!--四张趋势图：绑定 Display*Value，自动切换实时/历史数据-->
+        <Grid Grid.Row="1" Margin="0,8,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <local:TrendChartControl Grid.Row="0" Grid.Column="0"
+                                     ChartTitle="气体压力"
+                                     ChartSeries="{Binding TrendVM.DisplayPressureValue}"
+                                     ChartStroke="#2E7D32"
+                                     MaxValue="1.6"/>
+
+            <local:TrendChartControl Grid.Row="0" Grid.Column="1"
+                                     ChartTitle="气体温度"
+                                     ChartSeries="{Binding TrendVM.DisplayTemperatureValue}"
+                                     ChartStroke="#FF7043"
+                                     MaxValue="150"/>
+
+            <local:TrendChartControl Grid.Row="1" Grid.Column="0"
+                                     ChartTitle="湿度"
+                                     ChartSeries="{Binding TrendVM.DisplayHumidityValue}"
+                                     ChartStroke="#0288D1"
+                                     MaxValue="100"/>
+
+            <local:TrendChartControl Grid.Row="1" Grid.Column="1"
+                                     ChartTitle="气体流量"
+                                     ChartSeries="{Binding TrendVM.DisplayFlowValue}"
+                                     ChartStroke="#6A1B9A"
+                                     MaxValue="20"/>
+        </Grid>
+    </Grid>
+</UserControl>

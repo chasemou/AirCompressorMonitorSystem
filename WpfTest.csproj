@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Base\**" />
+    <EmbeddedResource Remove="Base\**" />
+    <None Remove="Base\**" />
+    <Page Remove="Base\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Fonts\iconfont.ttf" />
+    <None Remove="Assets\Fonts\JinBuTi.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.12" />
+    <PackageReference Include="NModbus4" Version="2.1.0" />
+    <PackageReference Include="System.IO.Ports" Version="10.0.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Fonts\iconfont.ttf" />
+    <Resource Include="Assets\Fonts\JinBuTi.ttf" />
+  </ItemGroup>
+
+</Project>
